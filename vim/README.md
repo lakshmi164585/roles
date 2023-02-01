@@ -36,3 +36,38 @@ Author Information
 ------------------
 
 An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+
+```
+first we have to install manually java 11 and 17 verdsions 
+
+```
+   java 11 manual installation commands
+  Refer Here:https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-on-ubuntu-22-04
+      sudo apt update
+      sudo apt install openjdk-11-jdk -y
+      java -version
+```
+  java 17 manual instasllation
+  Refer Here:
+    Sudo apt update
+    Sudo apt install openjdk-17-jdk -y
+    Java —version
+```
+Write a playbook for each individually done by manual commands
+Create roles for that playbook
+Each role having a seperate folder by automaticcally called roles
+That roles are push into local machine by sftp command line
+command for pushing roles into local machine 
+    sftp user@publicip  =====ansible user 
+    login to sftp
+    get -r filename
+    bye === exit
+    start . === open files in local machine
+    code . ==== open files in vscode
+
+```
+Now we are moving or pushing that roles (what we are created ) into git hub repository
+```
+
+
+
