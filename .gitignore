@@ -1,0 +1,12 @@
+/.travis.yml
+/defaults
+/files
+/handlers
+/hosts
+/main.yaml
+/meta
+/README.md
+/tasks
+/templates
+/tests
+/vars

@@ -1,0 +1,43 @@
+- name: installing jdk
+  ansible.builtin.apt:
+    name: "{{java}}"
+    state: present
+    update_cache: yes
+- name: installing jdk-17      
+  ansible.builtin.apt:
+    name: "{{java1}}"
+    state: present
+    update_cache: yes 
+- name: making a directory
+  ansible.builtin.file:
+    path: /usr/java
+    mode: '777' 
+    state: "directory" 
+- name: getting the url
+  ansible.builtin.get_url:
+    url: https://download.java.net/java/GA/jdk13.0.2/d4173c853231432d94f001e99d882ca7/8/GPL/openjdk-13.0.2_linux-x64_bin.tar.gz
+    dest: /tmp/
+    mode: '777'      
+- name: copy the file
+  ansible.builtin.copy:
+    src: /tmp/openjdk-13.0.2_linux-x64_bin.tar.gz
+    dest: /usr/java
+    remote_src: yes
+    mode: '777'  
+- name: untar the file
+  ansible.builtin.unarchive:
+    src: /usr/java/openjdk-13.0.2_linux-x64_bin.tar.gz
+    dest: /usr/java
+    remote_src: yes    
+- name: editing the config file
+  ansible.builtin.blockinfile:
+    path: /etc/profile
+    block: |
+      JAVA_HOME=/usr/java/jdk-13.0.2
+      PATH=$PATH:$HOME/bin:$JAVA_HOME/bin
+      export JAVA_HOME
+      export PATH 
+- name: command
+  ansible.builtin.command: sudo update-alternatives --install "/usr/bin/java" "java" "/usr/java/jdk-13.0.2/bin/java" 1      
+- name: command
+  ansible.builtin.command: sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/java/jdk-13.0.2/bin/javac" 1    

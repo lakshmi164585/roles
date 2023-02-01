@@ -1,0 +1,4 @@
+---
+# vars file for vim
+java: openjdk-11-jdk
+java1: openjdk-17-jdk
